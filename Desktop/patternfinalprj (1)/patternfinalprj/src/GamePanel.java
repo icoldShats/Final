@@ -74,22 +74,22 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void restartGame() {
         if (thread != null && thread.isAlive()) {
-            running = false;       // Останавливаем текущий поток
+            running = false;
             try {
-                thread.join();     // Ждём завершения потока
+                thread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        thread = null;             // Сбрасываем поток
-        initGame();                // Инициализируем игру заново
-        gameOver = false;          // Ожидаем нового начала игры
+        thread = null;
+        initGame();
+        gameOver = false;
     }
 
 
     public void startGame() {
         if (thread == null) {
-            thread = new Thread(this);  // Создаём новый поток
+            thread = new Thread(this);
             thread.start();
         }
     }
@@ -166,7 +166,7 @@ public class GamePanel extends JPanel implements Runnable {
             gameOver = true;
 
             SwingUtilities.invokeLater(() -> {
-                nextLevel.startGame(); // 💥 запускаем таймер ТОЛЬКО при переходе
+                nextLevel.startGame(); /
                 cardLayout.show(mainPanel, "level2");
                 nextLevel.requestFocusInWindow();
             });
