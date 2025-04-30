@@ -73,29 +73,42 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void restartGame() {
-        running = false;      // 💥 останавливаем текущий поток
-        thread = null;        // 💥 сбрасываем поток
-        initGame();           // заново инициализируем
-        gameOver = false;
+        if (thread != null && thread.isAlive()) {
+            running = false;       // Останавливаем текущий поток
+            try {
+                thread.join();     // Ждём завершения потока
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        thread = null;             // Сбрасываем поток
+        initGame();                // Инициализируем игру заново
+        gameOver = false;          // Ожидаем нового начала игры
     }
+
 
     public void startGame() {
         if (thread == null) {
-            thread = new Thread(this);
+            thread = new Thread(this);  // Создаём новый поток
             thread.start();
         }
     }
 
+
     public void run() {
         running = true;
+        System.out.println("Поток запущен для " + (gameWon ? "2-го раунда" : "1-го раунда"));
         while (running) {
             update();
             repaint();
             try {
                 Thread.sleep(16);
-            } catch (Exception e) { e.printStackTrace(); }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
+
 
     private void update() {
         if (gameOver) return;
@@ -123,7 +136,10 @@ public class GamePanel extends JPanel implements Runnable {
         if (!onAnyPlatform) player.onGround = false;
 
         for (Coin c : coins) {
-            if (!c.isCollected() &&
+            if
+
+> gulnur:
+            (!c.isCollected() &&
                     new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight())
                             .intersects(c.getBounds())) {
                 c.collect();
@@ -135,10 +151,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (cameraX < 0) cameraX = 0;
         if (cameraX > LEVEL_WIDTH - WIDTH) cameraX = LEVEL_WIDTH - WIDTH;
 
-        if (new
-
-                > gulnur:
-        Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight())
+        if (new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight())
                 .intersects(new Rectangle(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight()))) {
             lives--;
             if (lives <= 0) gameOver = true;
