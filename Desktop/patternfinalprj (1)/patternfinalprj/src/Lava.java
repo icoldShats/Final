@@ -19,5 +19,10 @@ public class Lava extends GameObject{
         g.setColor(Color.ORANGE);
         g.fillRect(x - cameraX, y, width, height);
     }
+    public boolean checkCollision(Player player) {
+        Rectangle lavaRect = new Rectangle(x, y, width, height);
+        Rectangle playerRect = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+        return lavaRect.intersects(playerRect);
+    }
 
 }
