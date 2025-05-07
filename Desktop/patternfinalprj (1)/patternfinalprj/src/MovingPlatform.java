@@ -12,4 +12,10 @@ public class MovingPlatform extends GameObject {
         this.leftBound = leftBound;
         this.rightBound = rightBound;
     }
+    @Override
+    public void update() {
+
+    }
+    public void draw(Graphics g) {
+    }
 }
