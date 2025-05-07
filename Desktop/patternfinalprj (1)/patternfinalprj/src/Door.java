@@ -28,4 +28,11 @@ public class Door extends GameObject {
     public boolean isOpen() {
         return open;
     }
+
+    public void draw(Graphics g, int cameraX) {
+        if (!open) {
+            g.setColor(Color.DARK_GRAY);
+            g.fillRect(x - cameraX, y, width, height);
+        }
+    }
 }
