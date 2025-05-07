@@ -21,5 +21,7 @@ public class MovingPlatform extends GameObject {
         }
     }
     public void draw(Graphics g) {
+        g.setColor(Color.YELLOW);
+        g.fillRect(x, y, width, height);
     }
 }
