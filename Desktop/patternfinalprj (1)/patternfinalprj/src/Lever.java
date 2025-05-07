@@ -7,4 +7,11 @@ public class Lever extends GameObject{
     public Lever(int x, int y) {
         super(x, y, 30, 30);
     }
+    @Override
+    public void draw(Graphics g) {
+
+    }
+    @Override
+    public void update() {
+    }
 }
