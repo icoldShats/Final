@@ -10,4 +10,8 @@ public class Lava extends GameObject{
     @Override
     public void update() {
     }
+    @Override
+    public void draw(Graphics g) {
+        draw(g, 0);
+    }
 }
