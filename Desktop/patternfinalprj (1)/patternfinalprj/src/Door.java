@@ -11,4 +11,7 @@ public class Door extends GameObject {
     @Override
     public void draw(Graphics g) {
     }
+    @Override
+    public void update() {
+    }
 }
