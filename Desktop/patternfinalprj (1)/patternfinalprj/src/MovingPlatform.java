@@ -20,8 +20,14 @@ public class MovingPlatform extends GameObject {
             speed *= -1;
         }
     }
+    @Override
     public void draw(Graphics g) {
         g.setColor(Color.YELLOW);
         g.fillRect(x, y, width, height);
+    }
+
+    public void draw(Graphics g, int cameraX) {
+        g.setColor(Color.YELLOW);
+        g.fillRect(x - cameraX, y, width, height);
     }
 }
