@@ -20,4 +20,8 @@ public class RotatingBlade extends GameObject {
     public void draw(Graphics g) {
         draw(g, 0);
     }
+    public void draw(Graphics g, int cameraX) {
+        Graphics2D g2d = (Graphics2D) g;
+        AffineTransform old = g2d.getTransform(); // сохраняем transform
+    }
 }
