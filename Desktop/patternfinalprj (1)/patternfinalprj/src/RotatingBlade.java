@@ -1,4 +1,4 @@
-
+package src;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -14,5 +14,10 @@ public class RotatingBlade extends GameObject {
     public void update() {
         angle += 5;
         if (angle >= 360) angle = 0;
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        draw(g, 0);
     }
 }
