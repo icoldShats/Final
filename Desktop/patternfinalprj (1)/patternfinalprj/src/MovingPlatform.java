@@ -14,7 +14,11 @@ public class MovingPlatform extends GameObject {
     }
     @Override
     public void update() {
+        x += speed;
 
+        if (x < leftBound || x + width > rightBound) {
+            speed *= -1;
+        }
     }
     public void draw(Graphics g) {
     }
