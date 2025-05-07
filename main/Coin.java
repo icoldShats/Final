@@ -33,7 +33,30 @@ public class Coin extends GameObject {
         listeners.add(listener);
     }
 
+    private void notifyListeners() {
+        for (CoinEventListener l : listeners) {
+            l.onCoinCollected();
+        }
+    }
 
+    @Override
+    public void update() {
+    }
+
+    public void draw(Graphics g, int cameraX) {
+        if (!collected) {
+            g.setColor(Color.YELLOW);
+            g.fillOval(x - cameraX, y, width, height);
+        }
+    }
+
+    @Override
+    public void draw(Graphics g) {
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
+    }
 
 
 }
