@@ -1,0 +1,16 @@
+package factory;
+
+import main.*;
+import main.Coin;
+import main.Door;
+import main.Enemy;
+
+public interface GameElementFactory {
+    Player createPlayer(int x, int y);
+    Enemy createEnemy(int x, int y);
+    Platform createPlatform(int x, int y, int width, int height);
+    Coin createCoin(int x, int y);
+    Lava createLava(int x, int y, int width, int height);
+    Lever createLever(int x, int y);
+    Door createDoor(int x, int y, int width, int height);
+}
