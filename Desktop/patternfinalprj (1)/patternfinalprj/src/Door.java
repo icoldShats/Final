@@ -14,4 +14,11 @@ public class Door extends GameObject {
     @Override
     public void update() {
     }
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
