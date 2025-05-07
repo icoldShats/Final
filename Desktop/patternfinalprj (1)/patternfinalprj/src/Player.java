@@ -1,79 +1,111 @@
 package main;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.KeyEvent;
-import state.PlayerState;
-import state.SmallMario;
-import state.BigMario;
+import java.awt.geom.AffineTransform;
 
 public class Player extends GameObject {
     public boolean left, right, jumping;
-    public boolean onGround = false;
+    private boolean onGround = false;
 
     private int gravity = 1;
     private int maxFallSpeed = 10;
 
-    private PlayerState state;
+    private int dx = 0;
+    private int dy = 0;
+
+    private double rotationAngle = 0;
 
     public Player(int x, int y) {
         super(x, y, 40, 40);
-        this.state = new SmallMario();
-    }
-
-    public void setState(PlayerState state) {
-        this.state = state;
     }
 
     public void update() {
-        state.move(this);
+        x += dx;
 
         if (jumping && onGround) {
-            state.jump(this);
+            System.out.println("ПРЫЖОК!!!");
+            dy = -18;
+            onGround = false;
         }
 
         dy += gravity;
         if (dy > maxFallSpeed) dy = maxFallSpeed;
         y += dy;
+
+        if (left) rotationAngle -= 0.1;
+        if (right) rotationAngle += 0.1;
+
         if (x < 0) x = 0;
         if (x > 3000 - width) x = 3000 - width;
-
     }
+
     public void draw(Graphics g, int cameraX) {
-        state.draw(g, this, cameraX);
+        Graphics2D g2d = (Graphics2D) g;
+        AffineTransform old = g2d.getTransform();
+
+        int centerX = x - cameraX + width / 2;
+        int centerY = y + height / 2;
+
+        g2d.translate(centerX, centerY);
+        g2d.rotate(rotationAngle);
+        g2d.setColor(Color.RED);
+        g2d.fillOval(-width / 2, -height / 2, width, height);
+
+        g2d.setTransform(old);
     }
 
     @Override
-    public void draw(Graphics g) {}
+    public void draw(Graphics g) {
+    }
 
     public void keyPressed(KeyEvent e) {
-        System.out.println("Нажата клавиша: " + e.getKeyCode()); // 💥 тест
         int key = e.getKeyCode();
-        if (key == KeyEvent.VK_LEFT) left = true;
-        if (key == KeyEvent.VK_RIGHT) right = true;
-        if (key == KeyEvent.VK_UP) jumping = true;
-
-        if (key == KeyEvent.VK_1) setState(new SmallMario());
-        if (key == KeyEvent.VK_2) setState(new BigMario());
+        if (key == KeyEvent.VK_LEFT) {
+            left = true;
+            dx = -6;
+        }
+        if (key == KeyEvent.VK_RIGHT) {
+            right = true;
+            dx = 6;
+        }
+        if (key == KeyEvent.VK_SPACE) jumping = true;
     }
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
-        if (key == KeyEvent.VK_LEFT) left = false;
-        if (key == KeyEvent.VK_RIGHT) right = false;
-        if (key == KeyEvent.VK_UP) jumping = false;
+        if (key == KeyEvent.VK_LEFT) {
+            left = false;
+            dx = right ? 6 : 0;
+        }
+        if (key == KeyEvent.VK_RIGHT) {
+            right = false;
+            dx = left ? -6 : 0;
+        }
+        if (key == KeyEvent.VK_SPACE) jumping = false;
     }
-    public void setDx(int dx) { this.dx = dx; }
-    public int getDx() { return dx; }
 
-    public void setX(int x) { this.x = x; }
-    public int getX() { return x; }
+    public boolean isOnGround() {
+        return onGround;
+    }
 
-    public void setY(int y) { this.y = y; }
-    public int getY() { return y; }
+    public void setOnGround(boolean onGround) {
+        this.onGround = onGround;
+    }
 
-    public void setDy(int dy) { this.dy = dy; }
-    public int getDy() { return dy; }
+    public int getDx() {
+        return dx;
+    }
 
-    public int getWidth() { return width; }
-    public int getHeight() { return height; }
+    public void setDx(int dx) {
+        this.dx = dx;
+    }
+
+    public int getDy() {
+        return dy;
+    }
+
+    public void setDy(int dy) {
+        this.dy = dy;
+    }
 }
