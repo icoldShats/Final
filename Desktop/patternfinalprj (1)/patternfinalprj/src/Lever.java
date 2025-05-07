@@ -17,4 +17,7 @@ public class Lever extends GameObject{
     public boolean isActivated() {
         return activated;
     }
+    public void activate() {
+        activated = true;
+    }
 }
