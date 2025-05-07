@@ -23,5 +23,12 @@ public class RotatingBlade extends GameObject {
     public void draw(Graphics g, int cameraX) {
         Graphics2D g2d = (Graphics2D) g;
         AffineTransform old = g2d.getTransform(); // сохраняем transform
+
+        g2d.setColor(Color.GREEN);
+        g2d.translate(x - cameraX + width / 2, y + height / 2);
+        g2d.rotate(Math.toRadians(angle));
+        g2d.fillRect(-width / 2, -height / 2, width, height);
+
+        g2d.setTransform(old);
     }
 }
