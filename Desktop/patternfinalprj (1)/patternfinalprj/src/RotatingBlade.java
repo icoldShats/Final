@@ -9,4 +9,7 @@ public class RotatingBlade extends GameObject {
     public RotatingBlade(int x, int y, int size) {
         super(x, y, size, size);
     }
-}
+
+    @Override
+    public void update() {
+    }}
