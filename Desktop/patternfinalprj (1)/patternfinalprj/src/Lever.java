@@ -14,4 +14,7 @@ public class Lever extends GameObject{
     @Override
     public void update() {
     }
+    public boolean isActivated() {
+        return activated;
+    }
 }
