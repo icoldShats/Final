@@ -14,4 +14,10 @@ public class Lava extends GameObject{
     public void draw(Graphics g) {
         draw(g, 0);
     }
+
+    public void draw(Graphics g, int cameraX) {
+        g.setColor(Color.ORANGE);
+        g.fillRect(x - cameraX, y, width, height);
+    }
+
 }
