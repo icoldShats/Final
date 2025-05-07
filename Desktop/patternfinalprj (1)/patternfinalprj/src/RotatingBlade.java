@@ -12,4 +12,7 @@ public class RotatingBlade extends GameObject {
 
     @Override
     public void update() {
-    }}
+        angle += 5;
+        if (angle >= 360) angle = 0;
+    }
+}
