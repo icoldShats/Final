@@ -35,4 +35,7 @@ public class Door extends GameObject {
             g.fillRect(x - cameraX, y, width, height);
         }
     }
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
+    }
 }
