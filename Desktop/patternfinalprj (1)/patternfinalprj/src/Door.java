@@ -25,4 +25,7 @@ public class Door extends GameObject {
     public void open() {
         open = true;
     }
+    public boolean isOpen() {
+        return open;
+    }
 }
