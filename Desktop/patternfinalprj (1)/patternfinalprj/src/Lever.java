@@ -25,4 +25,7 @@ public class Lever extends GameObject{
         g.setColor(activated ? Color.GREEN : Color.RED);
         g.fillRect(x - cameraX, y, width, height);
     }
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
+    }
 }
