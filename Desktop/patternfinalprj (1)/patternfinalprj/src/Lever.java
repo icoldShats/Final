@@ -20,4 +20,9 @@ public class Lever extends GameObject{
     public void activate() {
         activated = true;
     }
+
+    public void draw(Graphics g, int cameraX) {
+        g.setColor(activated ? Color.GREEN : Color.RED);
+        g.fillRect(x - cameraX, y, width, height);
+    }
 }
