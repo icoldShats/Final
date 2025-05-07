@@ -31,4 +31,9 @@ public class RotatingBlade extends GameObject {
 
         g2d.setTransform(old);
     }
+    public boolean checkCollision(Player player) {
+        Rectangle bladeRect = new Rectangle(x, y, width, height);
+        Rectangle playerRect = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+        return bladeRect.intersects(playerRect);
+    }
 }
