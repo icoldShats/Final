@@ -13,8 +13,8 @@ public class Game {
         CardLayout cardLayout = new CardLayout();
         JPanel mainPanel = new JPanel(cardLayout);
 
-        GameLevel2 level2 = new GameLevel2(cardLayout, mainPanel);  // Second level
-        GamePanel level1 = new GamePanel(cardLayout, mainPanel, level2);  // First level
+        GameLevel2 level2 = new GameLevel2(cardLayout, mainPanel); 
+        GamePanel level1 = new GamePanel(cardLayout, mainPanel, level2);
 
         MainMenuPanel menuPanel = new MainMenuPanel(frame, cardLayout, mainPanel);
         mainPanel.add(menuPanel, "menu");
